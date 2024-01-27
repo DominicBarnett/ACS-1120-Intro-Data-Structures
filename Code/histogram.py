@@ -1,5 +1,6 @@
+import random
 
-file_path = 'Great_Gatsby.txt'
+file_path = 'Code/Great_Gatsby.txt'
 def read_words_file(file_path):
     with open(file_path, 'r') as file:
         words = file.read().splitlines()
@@ -39,6 +40,6 @@ def unique_words(histogram):
 def frequency(word, histogram):
     return histogram[word]
 
-word = input("What word would you like to know the frequency of?->  ")
+word = random.choice(source_text)
 word_frequency = frequency(word, word_count)
-print(f'{word} appears {word_frequency} times')
+print(f'"{word}" appears {word_frequency} times')
