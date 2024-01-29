@@ -19,7 +19,14 @@ def string_txt_file(one_line_txt):
 
 source_text = string_txt_file(one_line_txt).split()
 
+
 # print(source_text)
+# def total_words_function(source_text):
+#     total_words = 0
+#     for i in source_text:
+#         total_words += 1
+#     return total_words
+
 
 
 def histogram(source_text):
@@ -31,6 +38,8 @@ def histogram(source_text):
             histogram[i] = 1
     return histogram
 
+
+
 word_count = histogram(source_text)
 # print(word_count)
 
@@ -40,6 +49,18 @@ def unique_words(histogram):
 def frequency(word, histogram):
     return histogram[word]
 
-word = random.choice(source_text)
+total_words = unique_words(histogram(source_text))
+
+def calculate_word_weight(dict_values):
+    word_weight = []
+    for i in dict_values:
+        word_weight.append(i/total_words)
+    return word_weight
+
+
+# word = random.choice(source_text)
+dict_values = word_count.values()
+word_weight = calculate_word_weight(dict_values)
+word = random.choices(list(word_count.keys()), weights=word_weight, k=1)[0]
 word_frequency = frequency(word, word_count)
 print(f'"{word}" appears {word_frequency} times')
