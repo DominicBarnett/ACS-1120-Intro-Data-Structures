@@ -57,10 +57,15 @@ def calculate_word_weight(dict_values):
         word_weight.append(i/total_words)
     return word_weight
 
+def generate_word():
+    word = random.choices(list(word_count.keys()), weights=word_weight, k=1)[0]
+    return word
+
 
 # word = random.choice(source_text)
 dict_values = word_count.values()
 word_weight = calculate_word_weight(dict_values)
-word = random.choices(list(word_count.keys()), weights=word_weight, k=1)[0]
-word_frequency = frequency(word, word_count)
-print(f'"{word}" appears {word_frequency} times')
+# word = random.choices(list(word_count.keys()), weights=word_weight, k=1)[0]
+# generated_word = generate_word()
+# word_frequency = frequency(generated_word, word_count)
+# print(f'"{generated_word}" appears {word_frequency} times')

@@ -1,6 +1,6 @@
 """Main script, uses other modules to generate sentences."""
-from flask import Flask
-
+from flask import Flask, request
+from histogram import generate_word, frequency, word_count
 
 app = Flask(__name__)
 
@@ -8,10 +8,15 @@ app = Flask(__name__)
 # Any code placed here will run only once, when the server starts.
 
 
-@app.route("/")
+@app.route("/", methods=('GET', 'POST'))
 def home():
     """Route that returns a web page containing the generated text."""
-    return "<p>TODO: Return a word here!</p>"
+    # if request.method == 'GET':
+    #     return f'"{word}" appears {word_frequency} times'
+    generated_word = generate_word()
+    word_frequency = frequency(generated_word, word_count)
+
+    return f'"{generated_word}" appears {word_frequency} times'
 
 
 if __name__ == "__main__":
