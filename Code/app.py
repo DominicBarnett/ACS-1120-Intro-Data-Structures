@@ -1,6 +1,8 @@
 """Main script, uses other modules to generate sentences."""
-from flask import Flask, request
-from histogram import generate_word, frequency, word_count
+from flask import Flask
+from word_count import word_count
+from sample import generate_word
+from histogram import frequency, histogram_test
 
 app = Flask(__name__)
 
@@ -11,10 +13,8 @@ app = Flask(__name__)
 @app.route("/", methods=('GET', 'POST'))
 def home():
     """Route that returns a web page containing the generated text."""
-    # if request.method == 'GET':
-    #     return f'"{word}" appears {word_frequency} times'
     generated_word = generate_word()
-    word_frequency = frequency(generated_word, word_count)
+    word_frequency = frequency(generated_word, histogram_test)
 
     return f'"{generated_word}" appears {word_frequency} times'
 
