@@ -1,5 +1,5 @@
 
-file_path = 'Code/Great_Gatsby.txt'
+file_path = '/Users/dominic/Desktop/Applied Computer Science/ACS-1120/ACS-1120-Intro-Data-Structures/Code/Great_Gatsby.txt'
 def read_words_file(file_path):
     with open(file_path, 'r') as file:
         words = file.read().splitlines()
