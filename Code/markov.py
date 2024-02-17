@@ -1,41 +1,44 @@
 import random
 from cleanup import source_text
-
+from dictogram import Dictogram
 
 class markov_chain(dict):
-    
-    
-    def __init__(self, corpus, order=1):
-        self.word_dict = {}
+    def __init__(self):
+        self.chain = Dictogram()
 
-        for i in range(len(corpus)-order):
-            word_1, word_2 = corpus[i], corpus[i+1]
-            if word_1 in self.word_dict:
-                self.word_dict[word_1].append(word_2)
+    def add_word_pair(self, word_1, word_2):
+        if word_1 in self.chain:
+            if word_2 in self.chain[word_1]:
+                self.chain[word_1][word_2] += 1
             else:
-                self.word_dict[word_1] = [word_2]
+                self.chain[word_1][word_2] = 1
+        else:
+            self.chain[word_1] = {word_2: 1}
 
-        
-    def walk(self):
-        first_word = random.choice(list(self.word_dict.keys()))
-        while first_word.islower():
-            first_word = random.choice(list(self.word_dict.keys()))
-        chain = [first_word]
+    def create_chain_from_text(self, corpus):
+            for i in range(len(corpus) - 1):
+                self.add_word_pair(corpus[i], corpus[i + 1])
 
-        sentence_length = 10
-
-        for i in range(sentence_length):
-            if chain[-1] not in self.word_dict:
-                next_word = random.choice(list(self.word_dict.keys()))
+    def walk(self, length=50):
+        current_word = random.choice(list(self.chain.keys()))
+        text = [current_word]
+        for _ in range(length - 1):
+            if current_word in self.chain:
+                next_word = random.choices(list(self.chain[current_word].keys()), 
+                                           weights=list(self.chain[current_word].values()))[0]
+                text.append(next_word)
+                current_word = next_word
             else:
-                next_word = random.choice(self.word_dict[chain[-1]])
-            chain.append(next_word)
-        
-        return ' '.join(chain)
-
-
+                break
+        return ' '.join(text)
 
 if __name__ == '__main__':
     corpus = source_text
-    mc = markov_chain(corpus)
-    print(mc.walk())
+
+    mc = markov_chain()
+    markov_chain = markov_chain()
+    markov_chain.create_chain_from_text(corpus)  # Change this to your text file's path
+    generated_text = markov_chain.walk()
+    print(generated_text)
+
+    
