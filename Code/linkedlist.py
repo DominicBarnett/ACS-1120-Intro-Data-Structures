@@ -86,14 +86,14 @@ class LinkedList:
             new_node.next = self.head
         self.head = new_node
 
-    # def find(self, item):
-    #     """Return True if the given item is present in this linked list, otherwise False."""
-    #     current = self.head
-    #     while current is not None:
-    #         if current.data == item:
-    #             return True
-    #         current = current.next
-    #     return False
+    def find(self, item):
+        """Return True if the given item is present in this linked list, otherwise False."""
+        current = self.head
+        while current is not None:
+            if current.data == item:
+                return True
+            current = current.next
+        return False
     # def find(self, finder):
     #     """Return found node or None."""
     #     current = self.head
@@ -102,14 +102,7 @@ class LinkedList:
     #             return current.data
     #         current = current.next
     #     return None
-    def find(self, finder):
-        """Return found node or None."""
-        current = self.head
-        while current is not None:
-            if current.data == finder:  # Compare data directly
-                return True
-            current = current.next
-        return False  # Return False if not found
+
 
     def replace(self, old_item, new_item):
         """Replace the given old_item with the new_item if old_item is present."""
