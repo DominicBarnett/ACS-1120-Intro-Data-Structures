@@ -86,17 +86,14 @@ class LinkedList:
             new_node.next = self.head
         self.head = new_node
 
-    def find(self, matcher):
-        """Return an item from this linked list if it is present.
-        TODO: Best case running time: O(???) Why and under what conditions?
-        TODO: Worst case running time: O(???) Why and under what conditions?"""
-        # TODO: Loop through all nodes to find item, if present return True otherwise False
+    def find(self, item):
+        """Return True if the given item is present in this linked list, otherwise False."""
         current = self.head
         while current is not None:
-            if matcher(current.data):
-                return current.data
+            if current.data == item:
+                return True
             current = current.next
-        return None
+        return False
 
     def replace(self, old_item, new_item):
         """Replace the given old_item with the new_item if old_item is present."""
