@@ -86,13 +86,25 @@ class HashTable(object):
         # Check if key-value entry exists in bucket
         return bucket.find(lambda item: item[0] == key) is not None
 
+    # def get(self, key):
+    #     """Return the value associated with the given key, or raise KeyError.
+    #     TODO: Running time: O(1) on average, O(n) in worst case Why and under what conditions?
+    #     - The running time is O(1) on average because it needs to find the bucket index
+    #       for the given key and then fetch the value associated with that key. However,
+    #       in the worst case, if all keys hash to the same bucket, it would need to traverse
+    #       the entire linked list at that bucket to find the key-value pair, making it O(n)."""
+    #     # Find bucket where given key belongs
+    #     bucket_index = self._bucket_index(key)
+    #     bucket = self.buckets[bucket_index]
+    #     # Check if key-value entry exists in bucket
+    #     entry = bucket.find(lambda item: item[0] == key)
+    #     # If found, return value associated with given key
+    #     if entry is not None:
+    #         return entry[1]
+    #     # Otherwise, raise error to tell user get failed
+    #     raise KeyError('Key not found: {}'.format(key))
     def get(self, key):
-        """Return the value associated with the given key, or raise KeyError.
-        TODO: Running time: O(1) on average, O(n) in worst case Why and under what conditions?
-        - The running time is O(1) on average because it needs to find the bucket index
-          for the given key and then fetch the value associated with that key. However,
-          in the worst case, if all keys hash to the same bucket, it would need to traverse
-          the entire linked list at that bucket to find the key-value pair, making it O(n)."""
+        """Return the value associated with the given key, or raise KeyError."""
         # Find bucket where given key belongs
         bucket_index = self._bucket_index(key)
         bucket = self.buckets[bucket_index]
@@ -101,8 +113,8 @@ class HashTable(object):
         # If found, return value associated with given key
         if entry is not None:
             return entry[1]
-        # Otherwise, raise error to tell user get failed
-        raise KeyError('Key not found: {}'.format(key))
+        else:
+            raise KeyError('Key not found: {}'.format(key))
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
