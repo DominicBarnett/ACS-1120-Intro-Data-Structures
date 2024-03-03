@@ -1,8 +1,7 @@
 """Main script, uses other modules to generate sentences."""
 from flask import Flask
-from word_count import word_count
-from sample import generate_word
-from histogram import frequency, histogram_test
+from cleanup import source_text
+from markov import markov_chain
 
 app = Flask(__name__)
 
@@ -13,10 +12,14 @@ app = Flask(__name__)
 @app.route("/", methods=('GET', 'POST'))
 def home():
     """Route that returns a web page containing the generated text."""
-    generated_word = generate_word()
-    word_frequency = frequency(generated_word, histogram_test)
+    # generated_word = generate_word()
+    # word_frequency = frequency(generated_word, histogram_test)
 
-    return f'"{generated_word}" appears {word_frequency} times'
+    # return f'"{generated_word}" appears {word_frequency} times'
+    mc = markov_chain()
+    mc.create_chain_from_text(corpus=source_text)  # Change this to your text file's path
+    generated_text = mc.walk(length=10)
+    return f" The generated sentence is--------:  {generated_text}"
 
 
 if __name__ == "__main__":

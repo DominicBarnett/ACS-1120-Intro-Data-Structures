@@ -1,36 +1,3 @@
-# import random
-
-# list_of_words = ["how", "now", "brown", "cow"]
-
-# print("____TYPE_______")
-# print(type(list_of_words))
-# print("_____LIST_____")
-# print(list_of_words)
-# print("_____REARRANGE____")
-
-# for i in list_of_words:
-# rearrange = random.sample(list_of_words, len(list_of_words))
-# rearrange_string = ' '.join(rearrange)
-
-# print(rearrange_string)
-# print("________________")
-# print("please input 4 words to rearrange, please type one word followed by the enter key until all four words are inputted")
-# word_1 = input()
-# word_2 = input()
-# word_3 = input()
-# word_4 = input()
-
-# input_words = []
-# input_words.append(word_1)
-# input_words.append(word_2)
-# input_words.append(word_3)
-# input_words.append(word_4)
-
-
-# rearrange_input = random.sample(input_words, len(input_words))
-# input_string = ' '.join(rearrange_input)
-# print('______INPUT REARRANGE______')
-# print(input_string)
 
 import sys
 import random

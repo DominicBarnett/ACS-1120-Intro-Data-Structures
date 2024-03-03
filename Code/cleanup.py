@@ -1,3 +1,4 @@
+import string
 
 file_path = '/Users/dominic/Desktop/Applied Computer Science/ACS-1120/ACS-1120-Intro-Data-Structures/Code/Great_Gatsby.txt'
 def read_words_file(file_path):
@@ -16,4 +17,15 @@ def string_txt_file(one_line_txt):
     string_txt_file = base_string_txt_file.lower()
     return string_txt_file
 
-source_text = string_txt_file(one_line_txt).split()
+unfiltered = string_txt_file(one_line_txt).split()
+translator = str.maketrans('', '', string.punctuation)
+source_text = []
+
+for word in unfiltered:
+    source_word = word.translate(translator)
+    source_text.append(source_word)
+
+
+
+
+# source_text
